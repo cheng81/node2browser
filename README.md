@@ -12,7 +12,7 @@ By default, the `process` object in every module contains only the `nextTick` fu
 
 ## Install and Usage
 
-    git clone [put github link here]
+    git clone git://github.com/cheng81/node2browser.git
     cd node2browser
     bin/node2browser <initfile> <outfile> <nodemodulesdir>
 
