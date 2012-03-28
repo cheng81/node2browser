@@ -24,3 +24,11 @@ required where.
 `nodemodulesdir` is where the node modules that you want to include will be.
 Sorry, for now it's very stupid and only single-file modules can be used -it's sufficient for me, if you need more drop a request to frza-AT-itu-DOT-dk-.
 
+## Limitations
+
+The grammar that extract the `require` calls is dumb. Specifically, it will:
+
+ - consider valid a commented call
+ - not recognize a call if you alias the `require` function (e.g. `var r = require; r('bla')` will not work)
+
+Circular dependencies are not handled. The tool will stop with an exception when a circular dependency is found.
