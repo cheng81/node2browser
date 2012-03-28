@@ -7,6 +7,14 @@ var args = process.argv
 args.shift()
 args.shift()
 
+function showHelp() {
+	console.log('node2browser usage:')
+	console.log('  node2browser initfile [outfile] [nodemodules]')
+	console.log('    initfile: initial file')
+	console.log('    outfile: where to put the results. Default: dist/out.js')
+	console.log('    nodemodules: where to find node module files. Default: null')
+}
+
 if(args.length==0) {showHelp(); return}
 
 var initfile = path.join(process.cwd(),args.shift())
