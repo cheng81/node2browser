@@ -1,0 +1,14 @@
+<html>
+<head>
+	<script type="text/javascript" src="./out.js"></script>
+</head>
+<body>
+	Test page
+	<script type="text/javascript">
+	var require = window.node2browser.require
+	var test2 = require('./test2')
+	var myfoo = new test2.Foo(10)
+	console.log(myfoo.add(20))
+	</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+
+var path = require('path')
+  , n2b = require('../lib/nodebrow')
+
+var args = process.argv
+args.shift()
+args.shift()
+
+if(args.length==0) {showHelp(); return}
+
+var initfile = path.join(process.cwd(),args.shift())
+var initpath = path.dirname(initfile)
+var outfile = path.join(process.cwd(),(args.shift()||'../dist/out.js'))
+var nodemodpath = args.shift()||false
+
+n2b.compile( initfile,outfile,nodemodpath )
