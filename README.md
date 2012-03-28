@@ -24,6 +24,22 @@ required where.
 `nodemodulesdir` is where the node modules that you want to include will be.
 Sorry, for now it's very stupid and only single-file modules can be used -it's sufficient for me, if you need more drop a request to frza-AT-itu-DOT-dk-.
 
+A simple example is included the in `test` directory, which also uses the [wu](http://fitzgen.github.com/wu.js/) library. Try it out with
+
+    bin/node2browser test/test1.js test/out.js test/node
+
+After the execution the `test/out.js` file is produced, which includes `test1.js`, `test2.js` and `node/wu.js` modules. The file `test/index.html` uses the produced file, plus shows also how to use `node2browser` in the browser.
+
+### In the Borwser
+
+To use the loaded modules in the browser, just use the `window.node2browser.require` function like you would use the Nodejs one, e.g.:
+
+    var require = window.node2browser.require
+
+    var mymod = require('./mymod')
+
+By default `./mymod` will be resolved against the directory of the `initfile` above.
+
 ## Limitations
 
 The grammar that extract the `require` calls is dumb. Specifically, it will:
