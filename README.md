@@ -8,7 +8,12 @@ Just a simple tool to port node modules to the browser.
 The modules will then be available in the browser using the `window.node2browser.require` function, 
 which works pretty the same way as Node's require.
 
-By default, the `process` object in every module contains only the `nextTick` function, simulated by `setTimeout`.
+Default modules:
+
+  - `process`: has only one method, `nextTick` (simulated using `window.setTimeout`)
+  - `util`:
+     - `inspect`, just call `console.log`
+     - `inherits`, stripped from [nodejs](http://www.nodejs.org/)
 
 ## Install and Usage
 
@@ -30,7 +35,7 @@ A simple example is included the in `test` directory, which also uses the [wu](h
 
 After the execution the `test/out.js` file is produced, which includes `test1.js`, `test2.js` and `node/wu.js` modules. The file `test/index.html` uses the produced file, plus shows also how to use `node2browser` in the browser.
 
-### In the Borwser
+### In the Browser
 
 To use the loaded modules in the browser, just use the `window.node2browser.require` function like you would use the Nodejs one, e.g.:
 
@@ -48,3 +53,5 @@ The grammar that extract the `require` calls is dumb. Specifically, it will:
  - not recognize a call if you alias the `require` function (e.g. `var r = require; r('bla')` will not work)
 
 Circular dependencies are not handled. The tool will stop with an exception when a circular dependency is found.
+
+The parser has been built using the incredibly cool [PEGjs](http://pegjs.majda.cz/) peg parser.
