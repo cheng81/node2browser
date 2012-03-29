@@ -51,6 +51,19 @@
       return p && typeof p === 'string';
     }).join('/'));
   };
+
+/*BRUTALLY STRIPPED FROM NODE.JS "util" module, www.nodejs.org*/
+  function inherits(ctor, superCtor) {
+  ctor.super_ = superCtor;
+  ctor.prototype = Object.create(superCtor.prototype, {
+    constructor: {
+      value: ctor,
+      enumerable: false,
+      writable: true,
+      configurable: true
+    }
+  });
+};
   /**/
 
 
@@ -88,7 +101,8 @@
 			},
 			cache: {
 				util: {
-					inspect: function(o) {console.log(o)}
+					inspect: function(o) {console.log(o)},
+					inherits: function(c,s) {inherits(c,s)}
 				}
 			}
 	}})();
@@ -887,12 +901,23 @@ module.exports = {
 
 /*---------------------------------------------------*/
 var test2 = require('./test2')
+  , util = require('util')
   , wu = require('wu').wu
 
-var t = new test2.Foo(5)
+
+var MyFoo = function(mf) {
+	test2.Foo.call(this,mf)
+}
+util.inherits(MyFoo,test2.Foo)
+MyFoo.prototype.multiply = function(arg) {
+	return this.bla * arg
+}
+
+var t = new MyFoo(5)
 
 process.nextTick(function() {
 	console.log(t.add(10))
+	console.log(t.multiply(10))
 })
 
 wu([1,2,3]).map(function(a) {return a*2})

@@ -51,6 +51,19 @@
       return p && typeof p === 'string';
     }).join('/'));
   };
+
+/*BRUTALLY STRIPPED FROM NODE.JS "util" module, www.nodejs.org*/
+  function inherits(ctor, superCtor) {
+  ctor.super_ = superCtor;
+  ctor.prototype = Object.create(superCtor.prototype, {
+    constructor: {
+      value: ctor,
+      enumerable: false,
+      writable: true,
+      configurable: true
+    }
+  });
+};
   /**/
 
 
@@ -88,7 +101,8 @@
 			},
 			cache: {
 				util: {
-					inspect: function(o) {console.log(o)}
+					inspect: function(o) {console.log(o)},
+					inherits: function(c,s) {inherits(c,s)}
 				}
 			}
 	}})();
