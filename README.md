@@ -2,6 +2,11 @@
 
 Just a simple tool to port node modules to the browser.
 
+## What it does
+
+You code your project using the normal [Node](http://www.nodejs.org/) module structure, then feed the tool with the main file (typically `<project path>/lib/index.js` or similar). Node2browser figures out the dependency tree, by parseing calls to the `require` function, and then concatenates the modules in a single fat javascript file, in a way that all the dependencies of a module have been already loaded when the module is required.
+Modules are loaded using [self-invoking anonimous functions](http://blog.themeforest.net/tutorials/ask-jw-decoding-self-invoking-anonymous-functions/).
+
 ## Features
 
 `node2browser` simply figures out the dependency tree of your modules, then squash them into a single file.
@@ -52,6 +57,6 @@ The grammar that extract the `require` calls is dumb. Specifically, it will:
  - consider valid a commented call
  - not recognize a call if you alias the `require` function (e.g. `var r = require; r('bla')` will not work)
 
-Circular dependencies are not handled. The tool will stop with an exception when a circular dependency is found.
+Circular dependencies are not handled. The tool will stop with an exception when a circular dependency is found (and I am not sure if even node itself handle circular dependencies).
 
 The parser has been built using the incredibly cool [PEGjs](http://pegjs.majda.cz/) peg parser.
