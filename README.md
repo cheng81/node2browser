@@ -15,7 +15,7 @@ which works pretty the same way as Node's require.
 
 Default modules:
 
-  - `process`: has only one method, `nextTick` (simulated using `window.setTimeout`)
+  - `process`: has only one method, `nextTick` (simulated using `window.setTimeout`), and an empty array `argv`
   - `util`:
      - `inspect`, just call `console.log`
      - `inherits`, stripped from [nodejs](http://www.nodejs.org/)
