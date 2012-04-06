@@ -96,7 +96,8 @@
 				process: {
 					nextTick: function(fn) {
 						window.setTimeout(fn,1)
-					}
+					},
+          argv: []
 				}
 			},
 			cache: {
