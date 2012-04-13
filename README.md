@@ -24,7 +24,7 @@ Default modules:
 
     git clone git://github.com/cheng81/node2browser.git
     cd node2browser
-    bin/node2browser <initfile> <outfile> <nodemodulesdir>
+    bin/node2browser <initfile> <outfile> <nodemodulesdir> <requiredAs>
 
 `initfile` is tipically the `index.js` in your project. From there, the tool will figure out which file are
 required where.
@@ -32,13 +32,18 @@ required where.
 `outfile` is where the "compiled" javascript will be. Default is `dist/out.js`.
 
 `nodemodulesdir` is where the node modules that you want to include will be.
+
+`requiredAs` is how you will require the compiled main module in the browser. For example, if you compile your `~/Projects/myLib/lib/index.js`, you might want to set this parameter as `myLib`. Default `main`.
+
 Sorry, for now it's very stupid and only single-file modules can be used -it's sufficient for me, if you need more drop a request to frza-AT-itu-DOT-dk-.
 
 A simple example is included the in `test` directory, which also uses the [wu](http://fitzgen.github.com/wu.js/) library. Try it out with
 
-    bin/node2browser test/test1.js test/out.js test/node
+    bin/node2browser test/test1.js test/out.js test/node myfoo
 
-After the execution the `test/out.js` file is produced, which includes `test1.js`, `test2.js` and `node/wu.js` modules. The file `test/index.html` uses the produced file, plus shows also how to use `node2browser` in the browser.
+After the execution the `test/out.js` file is produced, which includes `test1.js`, `test2.js` and `node/wu.js` modules.
+To require the initial file `test1.js`, you can either require `./test1` or `myfoo`.
+The file `test/index.html` uses the produced file, plus shows also how to use `node2browser` in the browser.
 
 ### In the Browser
 

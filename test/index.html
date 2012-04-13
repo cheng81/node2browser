@@ -10,5 +10,11 @@
 	var myfoo = new test2.Foo(10)
 	console.log(myfoo.add(20))
 	</script>
+	<script type="text/javascript">
+	var require = window.node2browser.require
+	var main = require('myfoo')
+	var myfoo = new main.MyFoo(10)
+	console.log(myfoo.multiply(20))
+	</script>
 </body>
 </html>

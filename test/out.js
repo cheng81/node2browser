@@ -73,9 +73,12 @@
 		var isNodeMod = function(name) {
 			return name[0] != '.'
 		}
+    var initFile = '/Users/frza/Documents/workspace.javascript/nodebrowserify/test/test1.js'
 		var startpath = '/Users/frza/Documents/workspace.javascript/nodebrowserify/test'
+    var requiredAs = 'myfoo'
 		var require = function(modulepath) {
 			return function(reqmodpath) {
+        if(reqmodpath==requiredAs) {return window.node2browser.require(initFile)}
 				var reqmod = isNodeMod(reqmodpath) ? reqmodpath : join(modulepath,reqmodpath)
 				var thecache = window.node2browser.cache
 
@@ -96,7 +99,8 @@
 				process: {
 					nextTick: function(fn) {
 						window.setTimeout(fn,1)
-					}
+					},
+          argv: []
 				}
 			},
 			cache: {
@@ -924,6 +928,8 @@ wu([1,2,3]).map(function(a) {return a*2})
 	.each(function(a) {
 		console.log(a)
 	})
+
+module.exports.MyFoo = MyFoo
 /*---------------------------------------------------*/
 
 	}

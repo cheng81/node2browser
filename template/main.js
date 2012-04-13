@@ -73,9 +73,12 @@
 		var isNodeMod = function(name) {
 			return name[0] != '.'
 		}
+    var initFile = '/**INITFILE**/'
 		var startpath = '/**STARTPATH**/'
+    var requiredAs = '/**REQUIREDAS**/'
 		var require = function(modulepath) {
 			return function(reqmodpath) {
+        if(reqmodpath==requiredAs) {return window.node2browser.require(initFile)}
 				var reqmod = isNodeMod(reqmodpath) ? reqmodpath : join(modulepath,reqmodpath)
 				var thecache = window.node2browser.cache
 

@@ -22,3 +22,5 @@ wu([1,2,3]).map(function(a) {return a*2})
 	.each(function(a) {
 		console.log(a)
 	})
+
+module.exports.MyFoo = MyFoo
